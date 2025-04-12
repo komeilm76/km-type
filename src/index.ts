@@ -1,4 +1,4 @@
-namespace KmType {
+namespace kmType {
   export namespace Advanced {
     export type ITuple<LIST extends any[]> = [...LIST];
     export type IShape<KEY extends string, VALUE extends any, SHAPE_TYPE extends object> = {
@@ -45,18 +45,18 @@ namespace KmType {
   }
 }
 
-export type KMTuple<LIST extends any[]> = KmType.Advanced.ITuple<LIST>;
+export type KMTuple<LIST extends any[]> = kmType.Advanced.ITuple<LIST>;
 export type KMShape<
   KEY extends string,
   VALUE extends any,
   SHAPE_TYPE extends object
-> = KmType.Advanced.IShape<KEY, VALUE, SHAPE_TYPE>;
+> = kmType.Advanced.IShape<KEY, VALUE, SHAPE_TYPE>;
 export type KMTupleShape<
   TUPLE_LIST,
   KEY_OF_VALUE extends string,
   SHAPE_TYPE extends object
-> = KmType.Advanced.ITupleShape<TUPLE_LIST, KEY_OF_VALUE, SHAPE_TYPE>;
-export const kmTuple = KmType.Advanced.tuple;
-export const tupleShape = KmType.Advanced.tupleShape;
+> = kmType.Advanced.ITupleShape<TUPLE_LIST, KEY_OF_VALUE, SHAPE_TYPE>;
+export const kmTuple = kmType.Advanced.tuple;
+export const kmTupleShape = kmType.Advanced.tupleShape;
 
-export default KmType;
+export default kmType;
