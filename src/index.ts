@@ -59,5 +59,4 @@ export type KMTupleShape<
 export const kmTuple = KmType.Advanced.tuple;
 export const tupleShape = KmType.Advanced.tupleShape;
 
-
 export default KmType;
