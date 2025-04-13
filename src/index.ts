@@ -2,18 +2,22 @@ import { Observable } from 'rxjs';
 
 namespace kmType {
   export namespace Advanced {
-    export type ITuple<LIST extends any[]> = [...LIST];
-    export type IShape<KEY extends string, VALUE extends any, SHAPE_TYPE extends object> = {
+    export type TupleList<LIST extends any[]> = [...LIST];
+    export type ShapeType<KEY extends string, VALUE extends any, SHAPE_TYPE extends object> = {
       [key in KEY]: VALUE;
     } & SHAPE_TYPE;
-    export type ITupleShape<TUPLE_LIST, KEY_OF_VALUE extends string, SHAPE_TYPE extends object> = {
-      [key in keyof TUPLE_LIST]: IShape<KEY_OF_VALUE, TUPLE_LIST[key], SHAPE_TYPE>;
+    export type TupleShapeList<
+      TUPLE_LIST,
+      KEY_OF_VALUE extends string,
+      SHAPE_TYPE extends object
+    > = {
+      [key in keyof TUPLE_LIST]: ShapeType<KEY_OF_VALUE, TUPLE_LIST[key], SHAPE_TYPE>;
     };
-    export const tuple = <LIST extends any[]>(list: [...LIST]) => {
+    export const tupleList = <LIST extends any[]>(list: [...LIST]) => {
       return list as [...LIST];
     };
 
-    export const tupleShape = <
+    export const tupleShapeList = <
       LIST extends readonly any[],
       SHAPE_TYPE extends object,
       KEY_OF_VALUE extends string
@@ -27,7 +31,7 @@ namespace kmType {
           [keyOfValue]: item,
           ...exampleShape,
         };
-      }) as ITupleShape<[...LIST], KEY_OF_VALUE, SHAPE_TYPE>;
+      }) as TupleShapeList<[...LIST], KEY_OF_VALUE, SHAPE_TYPE>;
     };
   }
   export namespace Infer {
@@ -42,19 +46,19 @@ namespace kmType {
   }
 }
 
-export type KMTuple<LIST extends any[]> = kmType.Advanced.ITuple<LIST>;
-export type KMShape<
+export type TupleList<LIST extends any[]> = kmType.Advanced.TupleList<LIST>;
+export type ShapeType<
   KEY extends string,
   VALUE extends any,
   SHAPE_TYPE extends object
-> = kmType.Advanced.IShape<KEY, VALUE, SHAPE_TYPE>;
-export type KMTupleShape<
+> = kmType.Advanced.ShapeType<KEY, VALUE, SHAPE_TYPE>;
+export type TupleShapeList<
   TUPLE_LIST,
   KEY_OF_VALUE extends string,
   SHAPE_TYPE extends object
-> = kmType.Advanced.ITupleShape<TUPLE_LIST, KEY_OF_VALUE, SHAPE_TYPE>;
-export const kmTuple = kmType.Advanced.tuple;
-export const kmTupleShape = kmType.Advanced.tupleShape;
+> = kmType.Advanced.TupleShapeList<TUPLE_LIST, KEY_OF_VALUE, SHAPE_TYPE>;
+export const tupleList = kmType.Advanced.tupleList;
+export const tupleShapeList = kmType.Advanced.tupleShapeList;
 
 export type InferObservableOutput<ENTRY> = kmType.Infer.ObservableOutput<ENTRY>;
 export type InferPromiseOutput<ENTRY> = kmType.Infer.PromiseOutput<ENTRY>;
