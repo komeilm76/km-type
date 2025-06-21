@@ -33,15 +33,23 @@ namespace kmType {
         };
       }) as TupleShapeList<[...LIST], KEY_OF_VALUE, SHAPE_TYPE>;
     };
-    export type JoinListOfString<
+
+    export type JoinListOfStringInStart<
       LIST extends string[],
-      SPLITTER extends string = '/'
+      SPLITTER extends string = ','
     > = LIST['length'] extends 0
       ? ''
-      : LIST['length'] extends 1
-      ? LIST[0]
       : LIST extends [infer First extends string, ...infer Rest extends string[]]
-      ? `${First}${SPLITTER}${JoinListOfString<Rest, SPLITTER>}`
+      ? `${SPLITTER}${First}${JoinListOfStringInStart<Rest, SPLITTER>}`
+      : string;
+
+    export type JoinListOfStringInEnd<
+      LIST extends string[],
+      SPLITTER extends string = ','
+    > = LIST['length'] extends 0
+      ? ''
+      : LIST extends [infer First extends string, ...infer Rest extends string[]]
+      ? `${First}${SPLITTER}${JoinListOfStringInEnd<Rest, SPLITTER>}`
       : string;
   }
   export namespace Infer {
