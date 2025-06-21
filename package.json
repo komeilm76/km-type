@@ -1,6 +1,6 @@
 {
   "name": "km-type",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "typescript advanced types",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
