@@ -33,6 +33,16 @@ namespace kmType {
         };
       }) as TupleShapeList<[...LIST], KEY_OF_VALUE, SHAPE_TYPE>;
     };
+    export type JoinListOfString<
+      LIST extends string[],
+      SPLITTER extends string = '/'
+    > = LIST['length'] extends 0
+      ? ''
+      : LIST['length'] extends 1
+      ? LIST[0]
+      : LIST extends [infer First extends string, ...infer Rest extends string[]]
+      ? `${First}${SPLITTER}${JoinListOfString<Rest, SPLITTER>}`
+      : string;
   }
   export namespace Infer {
     export type ObservableOutput<T> = T extends Observable<infer U> ? U : never;
